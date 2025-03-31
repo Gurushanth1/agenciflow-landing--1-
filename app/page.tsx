@@ -6,12 +6,8 @@ import {
   ArrowUpRight,
   ArrowLeft,
   ArrowRight,
-  Clock,
-  Users,
-  LayoutGrid,
-  TestTube,
-  Code,
-  RotateCcw,
+ 
+  
   Facebook,
   Twitter,
   Instagram,
@@ -25,6 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Points from "@/components/ui/Points";
+import { Card, Clock, Code, Group, Handshake, Shapes } from "@/components/ui/icons";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -66,7 +63,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <header className="px-6 py-5 flex items-center justify-between max-w-[1300px] mx-auto fixed top-2 left-0 right-0 z-50  bg-white/80 backdrop-blur-sm rounded-md">
+      <header className="px-6 py-5 flex items-center justify-between max-w-[1300px] mx-auto fixed top-2 left-0 right-0 z-50  bg-white/80 backdrop-blur-sm rounded-2xl">
         <div className="flex items-center gap-4">
           <Image
             src="/logo.png"
@@ -148,9 +145,7 @@ export default function Home() {
             </h1>
             <p className="mt-6 text-3xl font-light text-gray-600 max-w-[600px]">
               Turning ideas into{" "}
-              <span className="text-primary">
-                intelligent digital
-              </span>{" "}
+              <span className="text-primary">intelligent digital</span>{" "}
               experiences
             </p>
             <Link
@@ -179,7 +174,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-8 rounded-2xl shadow-sm">
               <h3 className="text-2xl font-bold mb-2">
                 AI-Powered Page Builder
               </h3>
@@ -197,7 +192,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-center   py-4">
               <div className="border-b py-8">
-                <h3 className="text-[32px] font-bold text-gray-900 leading-tight">
+                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
                   5,000+
                 </h3>
                 <p className="text-gray-600 mt-1 text-xl">
@@ -206,7 +201,7 @@ export default function Home() {
               </div>
 
               <div className="border-b py-8">
-                <h3 className="text-[32px] font-bold text-gray-900 leading-tight">
+                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
                   80%
                 </h3>
                 <p className="text-gray-600 mt-1">
@@ -215,7 +210,7 @@ export default function Home() {
               </div>
 
               <div className="border-b py-8">
-                <h3 className="text-[32px] font-bold text-gray-900 leading-tight">
+                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
                   99.9%
                 </h3>
                 <p className="text-gray-600 mt-1">
@@ -224,7 +219,7 @@ export default function Home() {
               </div>
 
               <div className="border-b py-8">
-                <h3 className="text-[32px] font-bold text-gray-900 leading-tight">
+                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
                   10,000+
                 </h3>
                 <p className="text-gray-600 mt-1">
@@ -239,7 +234,7 @@ export default function Home() {
       {/* Tailored Solutions Section */}
       <section className="py-20">
         <div className="max-w-[1300px] mx-auto px-6">
-          <div className="max-w-3xl mb-16">
+          <div className="max-w-5xl mb-16">
             <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em]">
               Tailored Software Development Solutions for Your Unique Business
               Needs
@@ -258,7 +253,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
               "AI & Automation Solutions",
               "Website Development",
@@ -465,94 +460,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-[#f3f3f6]">
-        <div className="max-w-[1300px] mx-auto px-6">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em]">
-                What our clients say
-              </h2>
-              <p className="text-gray-600 mt-2">
-                A visionary creative agency that inspires and leads.
-              </p>
-            </div>
-
-            <div className="flex gap-4">
-              <button
-                onClick={() =>
-                  setActiveTestimonial((prev) =>
-                    prev > 0 ? prev - 1 : testimonials.length - 1
-                  )
-                }
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
-              >
-                <ArrowLeft size={16} />
-              </button>
-              <button
-                onClick={() =>
-                  setActiveTestimonial((prev) =>
-                    prev < testimonials.length - 1 ? prev + 1 : 0
-                  )
-                }
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
-              >
-                <ArrowRight size={16} />
-              </button>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`bg-white p-6 rounded-lg ${
-                  index === 1
-                    ? "border-none"
-                    : index === 2
-                    ? "border-2 border-primary"
-                    : "border border-gray-100"
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <Image
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    width={48}
-                    height={48}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <h4 className="font-medium">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.title}</p>
-                  </div>
-                </div>
-                <p className="text-gray-700">{testimonial.quote}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+ 
 
       {/* Team Section */}
-      <section className=" relative py-20 bg-[#111111] text-white">
-        <Image
-          src="/teams.jpeg"
-          alt="Our Team"
-          width={640}
-          height={400}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40 rounded-lg flex flex-col justify-end p-8">
-          <h3 className="text-[56px] font-bold">60 +</h3>
-          <p className="text-xl">
-            Expert Developers, Designers, QA, and DevOps Professionals
-          </p>
-          <p className="mt-4 text-lg">
-            Brilliant minds. Groundbreaking tech. Unwavering drive
-          </p>
+      <section className="relative py-20 bg-[#111111] text-white">
+        <div className="relative">
+          {" "}
+          {/* Container for image and overlay */}
+          <img
+            src="/teams.jpeg"
+            alt="Our Team"
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-black opacity-40"></div>{" "}
+          {/* Dark overlay */}
+          <div className="absolute bottom-0 left-0 w-full px-6 md:px-28 py-16">
+            <h3 className="text-[56px] font-bold">60 +</h3>
+            <p className="text-xl">
+              Expert Developers, Designers, QA, and DevOps Professionals
+            </p>
+            <p className="mt-4 text-lg">
+              Brilliant minds. Groundbreaking tech. Unwavering drive
+            </p>
+          </div>
         </div>
       </section>
+
       {/* Our Process Section */}
       <section className="relative py-20 bg-[#202122]  text-white">
         <Image
@@ -562,21 +495,19 @@ export default function Home() {
           height={400}
           className="absolute w-full max-w-md top-0 right-0"
         />
-        <div className="container mx-auto flex flex-wrap gap-28 pt-24">
-          <div className="max-w-[500px]   ">
-            <h2 className="text-[56px] font-bold  mb-6 leading-[1.1] tracking-[-0.02em]">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 py-24 flex flex-col lg:flex-row gap-16">
+          <div className="max-w-lg lg:max-w-[500px]">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
               End-to-End Product Development
             </h2>
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-400 text-lg">
               End-to-end product development is a comprehensive process that
               takes a concept from its initial stage to a fully functional and
-              market-ready product. This approach ensures a seamless execution,
-              maintaining high standards of quality, scalability, and user
-              experience throughout the journey.
+              market-ready product.
             </p>
           </div>
-          <div className=" ">
-            <div className="space-y-8  z-10">
+          <div className="flex-1">
+            <div className="space-y-8">
               {[
                 {
                   title: "Idea & Conceptualization",
@@ -616,11 +547,10 @@ export default function Home() {
               ].map((step, index) => (
                 <div
                   key={index}
-                  className={`flex gap-4 ${
-                    index === 0 ? "border-y pt-6" : "border-b"
-                  } border-gray-700 pb-6`}
+                  className={`flex gap-4 border-gray-700 pb-6 ${
+                    index === 0 ? "border-t pt-6" : "border-b"
+                  }`}
                 >
-                  {/* <div className="text-gray-500 mt-1">→</div> */}
                   <Points />
                   <div>
                     <h4 className="text-lg font-medium mb-2">{step.title}</h4>
@@ -642,37 +572,37 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon: <Clock className="text-primary" />,
+                icon:  <Clock/>,
                 title: "Planning & Backlog Creation",
                 description:
                   "Define goals, prioritize tasks, and set the development roadmap.",
               },
               {
-                icon: <Users className="text-primary" />,
+                icon: <Handshake />,
                 title: "Sprint Kickoff",
                 description:
                   "Assign tasks, set timelines, and align the team on sprint goals.",
               },
               {
-                icon: <LayoutGrid className="text-primary" />,
+                icon: <Card   />,
                 title: "Design & Development",
                 description:
                   "Create, refine, and build features for seamless functionality.",
               },
               {
-                icon: <TestTube className="text-primary" />,
+                icon: <Group />,
                 title: "Testing & QA",
                 description:
                   "Ensure functionality, security, and performance through rigorous testing.",
               },
               {
-                icon: <Code className="text-primary" />,
+                icon: <Code />,
                 title: "Sprint Review & Deployment",
                 description:
                   "Evaluate progress, gather feedback, and release updates.",
               },
               {
-                icon: <RotateCcw className="text-primary" />,
+                icon: <Shapes   />,
                 title: "Retrospective & Planning",
                 description:
                   "Review performance, refine processes, and plan the next sprint.",
@@ -680,7 +610,7 @@ export default function Home() {
             ].map((sprint, index) => (
               <div
                 key={index}
-                className="border border-gray-800 rounded-lg p-6"
+                className="border border-gray-600 rounded-lg p-6"
               >
                 <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-4">
                   {sprint.icon}
@@ -698,11 +628,11 @@ export default function Home() {
         id="contact"
         className="py-20 bg-gradient-to-br from-[#f5f5ff] to-white"
       >
-        <div className="max-w-[1300px] mx-auto px-6 text-center mb-16">
-          <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em]">
+        <div className="max-w-[1300px] mx-auto px-6 text-center mb-16 flex flex-col items-center">
+          <h2 className="max-w-lg text-[40px] font-bold mb-4 leading-[1.3] tracking-[-0.02em]">
             Let's Build Something Great Together
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <p className="text-gray-600 max-w-xl mx-auto">
             We offer end-to-end services including Design, Development, Testing,
             and more. Reach out to discuss how we can bring your ideas to life!
           </p>
@@ -759,7 +689,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-gray-100 p-8 rounded-lg shadow-sm">
               <form className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -845,6 +775,69 @@ export default function Home() {
                 </button>
               </form>
             </div>
+          </div>
+        </div>
+      </section>
+
+           {/* Testimonials Section */}
+           <section className="py-20 bg-[#f3f3f6]">
+        <div className="max-w-[1300px] mx-auto px-6">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em]">
+                What our clients say
+              </h2>
+              <p className="text-gray-600 mt-2">
+                A visionary creative agency that inspires and leads.
+              </p>
+            </div>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() =>
+                  setActiveTestimonial((prev) =>
+                    prev > 0 ? prev - 1 : testimonials.length - 1
+                  )
+                }
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
+              >
+                <ArrowLeft size={16} />
+              </button>
+              <button
+                onClick={() =>
+                  setActiveTestimonial((prev) =>
+                    prev < testimonials.length - 1 ? prev + 1 : 0
+                  )
+                }
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
+              >
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className={`bg-transparent p-6 rounded-xl  border border-[#9E9E9E]`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Image
+                    src={testimonial.image || "/placeholder.svg"}
+                    alt={testimonial.name}
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <h4 className="font-medium">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.title}</p>
+                  </div>
+                </div>
+                <p className="text-gray-700">{testimonial.quote}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
