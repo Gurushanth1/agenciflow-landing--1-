@@ -6,14 +6,12 @@ import {
   ArrowUpRight,
   ArrowLeft,
   ArrowRight,
- 
-  
   Facebook,
   Twitter,
   Instagram,
   Linkedin,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -21,19 +19,22 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Points from "@/components/ui/Points";
-import { Card, Clock, Code, Group, Handshake, Shapes } from "@/components/ui/icons";
+import {
+  Card,
+  Clock,
+  Code,
+  Group,
+  Handshake,
+  Shapes,
+} from "@/components/ui/icons";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+import { Header } from "@/components/header"
+// ..
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    AOS.init();
   }, []);
 
   const testimonials = [
@@ -61,65 +62,17 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <header className="px-6 py-5 flex items-center justify-between max-w-[1300px] mx-auto fixed top-2 left-0 right-0 z-50  bg-white/80 backdrop-blur-sm rounded-2xl">
-        <div className="flex items-center gap-4">
-          <Image
-            src="/logo.png"
-            alt="AgenciFlow Logo"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
-          <span className="font-semibold text-xl">AgenciFlow</span>
-        </div>
-
-        <div className="flex items-center">
-          <nav className="hidden md:flex items-center">
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary px-4"
-            >
-              Home
-            </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary px-4"
-            >
-              About Us
-            </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary px-4"
-            >
-              Our Services
-            </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium hover:text-primary px-4"
-            >
-              Contact Us
-            </Link>
-          </nav>
-
-          <Link
-            href="#contact"
-            className="bg-primary text-white px-8 py-3 rounded-md text-sm font-medium ml-6"
-          >
-            Get in Touch
-          </Link>
-        </div>
-      </header>
-
+    <main className="min-h-screen">
+      <Header />
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24">
+      <section className="relative overflow-hidden bg-white">
         <div
+          data-aos="fade-down"
           className="absolute inset-0 z-0"
-          style={{
-            transform: `translateY(${scrollY * 0.15}px)`,
-            transition: "transform 0.1s linear",
-          }}
+          // style={{
+          //   transform: `translateY(${scrollY * 0.15}px)`,
+          //   transition: "transform 0.1s linear",
+          // }}
         >
           <Image
             src="/wave.png"
@@ -133,12 +86,14 @@ export default function Home() {
 
         <div className="max-w-[1300px] mx-auto px-6 pt-28 pb-56 relative z-10">
           <div
+            data-aos="fade-up"
+            data-aos-delay="100"
             className="max-w-[700px]"
-            style={{
-              transform: `translateY(${scrollY * -0.1}px)`,
-              opacity: 1 - scrollY * 0.001,
-              transition: "transform 0.1s linear, opacity 0.1s linear",
-            }}
+            // style={{
+            //   transform: `translateY(${scrollY * -0.1}px)`,
+            //   opacity: 1 - scrollY * 0.001,
+            //   transition: "transform 0.1s linear, opacity 0.1s linear",
+            // }}
           >
             <h1 className="text-[80px] font-bold leading-[1.1] tracking-[-0.02em]">
               Your vision, our innovation limitless potential
@@ -161,7 +116,10 @@ export default function Home() {
       {/* Trusted Solution Section */}
       <section className="bg-[#f3f3f6] py-16">
         <div className="max-w-[1300px] mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-12">
+          <div
+            data-aos="fade-up"
+            className="flex flex-col md:flex-row justify-between items-start mb-12"
+          >
             <h2 className="text-[56px] font-semibold max-w-2xl leading-[1.1] tracking-[-0.02em]">
               Our Trusted Solution For Growing Businesses
             </h2>
@@ -173,8 +131,8 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm">
+          <div data-aos="fade-up" className="flex flex-col md:flex-row gap-6">
+            <div className="bg-white p-8 rounded-2xl shadow-sm flex-[3]">
               <h3 className="text-2xl font-bold mb-2">
                 AI-Powered Page Builder
               </h3>
@@ -190,7 +148,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center   py-4">
+            <div className="flex flex-col justify-center   py-4 flex-[2]">
               <div className="border-b py-8">
                 <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
                   5,000+
@@ -232,9 +190,9 @@ export default function Home() {
       </section>
 
       {/* Tailored Solutions Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-[1300px] mx-auto px-6">
-          <div className="max-w-5xl mb-16">
+          <div data-aos="fade-up" className="max-w-5xl mb-16">
             <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em]">
               Tailored Software Development Solutions for Your Unique Business
               Needs
@@ -253,7 +211,10 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div
+            data-aos="fade-up"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-3"
+          >
             {[
               "AI & Automation Solutions",
               "Website Development",
@@ -283,7 +244,10 @@ export default function Home() {
 
       {/* Tech Stack Section */}
       <section className="py-20 bg-[#f3f3f6]">
-        <div className="max-w-[1300px] mx-auto px-6 text-center">
+        <div
+          data-aos="fade-up"
+          className="max-w-[1300px] mx-auto px-6 text-center"
+        >
           <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em] max-w-2xl mx-auto">
             Whatever Your Tech Stack, We're Ready
           </h2>
@@ -304,7 +268,10 @@ export default function Home() {
               { name: "Swift", icon: "/tech/swift.svg" },
               { name: "Angular", icon: "/tech/angular.svg" },
             ].map((tech, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div
+                key={index}
+                className="flex flex-col items-center animate-swipe"
+              >
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-sm">
                   <Image
                     src={tech.icon || "/placeholder.svg"}
@@ -329,7 +296,10 @@ export default function Home() {
               { name: "React", icon: "/tech/react.svg" },
               { name: "Swift", icon: "/tech/swift.svg" },
             ].map((tech, index) => (
-              <div key={index} className="flex flex-col items-center">
+              <div
+                key={index}
+                className="flex flex-col items-center animate-swipe-reverse"
+              >
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-sm">
                   <Image
                     src={tech.icon || "/placeholder.svg"}
@@ -346,9 +316,9 @@ export default function Home() {
       </section>
 
       {/* What Makes AgenciFlow Unique Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-[1300px] mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div data-aos="fade-up" className="grid md:grid-cols-2 gap-12">
             <div>
               <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em]">
                 What Makes AgenciFlow Unique?
@@ -460,21 +430,25 @@ export default function Home() {
         </div>
       </section>
 
- 
-
       {/* Team Section */}
-      <section className="relative py-20 bg-[#111111] text-white">
+      <section className="relative  h-screen text-white">
         <div className="relative">
           {" "}
           {/* Container for image and overlay */}
-          <img
+          <Image
             src="/teams.jpeg"
             alt="Our Team"
-            className="w-full h-auto object-cover"
+            width={1440}
+            height={800}
+            className="  object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-black opacity-40"></div>{" "}
+          <div className="absolute   inset-0 bg-black opacity-40"></div>{" "}
           {/* Dark overlay */}
-          <div className="absolute bottom-0 left-0 w-full px-6 md:px-28 py-16">
+          <div
+            data-aos="fade-up"
+            className="absolute bottom-40 left-0 w-full px-6 md:px-28 py-16"
+          >
             <h3 className="text-[56px] font-bold">60 +</h3>
             <p className="text-xl">
               Expert Developers, Designers, QA, and DevOps Professionals
@@ -496,7 +470,10 @@ export default function Home() {
           className="absolute w-full max-w-md top-0 right-0"
         />
         <div className="container mx-auto px-6 md:px-12 lg:px-16 py-24 flex flex-col lg:flex-row gap-16">
-          <div className="max-w-lg lg:max-w-[500px]">
+          <div
+            data-aos="fade-up"
+            className="max-w-lg lg:max-w-[500px] sticky top-24 h-full"
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
               End-to-End Product Development
             </h2>
@@ -546,6 +523,7 @@ export default function Home() {
                 },
               ].map((step, index) => (
                 <div
+                  data-aos="fade-up"
                   key={index}
                   className={`flex gap-4 border-gray-700 pb-6 ${
                     index === 0 ? "border-t pt-6" : "border-b"
@@ -565,14 +543,17 @@ export default function Home() {
       {/* Sprint-Based Deployment Section */}
       <section className="py-20 bg-[#1d1e1f] w-screen h-screen text-white">
         <div className="max-w-[1300px] mx-auto px-6">
-          <h2 className="text-[40px] font-bold mb-12 leading-[1.1] tracking-[-0.02em]">
+          <h2
+            data-aos="fade-up"
+            className="text-[40px] font-bold mb-12 leading-[1.1] tracking-[-0.02em]"
+          >
             Sprint-Based Deployment
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon:  <Clock/>,
+                icon: <Clock />,
                 title: "Planning & Backlog Creation",
                 description:
                   "Define goals, prioritize tasks, and set the development roadmap.",
@@ -584,7 +565,7 @@ export default function Home() {
                   "Assign tasks, set timelines, and align the team on sprint goals.",
               },
               {
-                icon: <Card   />,
+                icon: <Card />,
                 title: "Design & Development",
                 description:
                   "Create, refine, and build features for seamless functionality.",
@@ -602,13 +583,15 @@ export default function Home() {
                   "Evaluate progress, gather feedback, and release updates.",
               },
               {
-                icon: <Shapes   />,
+                icon: <Shapes />,
                 title: "Retrospective & Planning",
                 description:
                   "Review performance, refine processes, and plan the next sprint.",
               },
             ].map((sprint, index) => (
               <div
+                data-aos="fade-up"
+                data-aos-delay={`${index * 100}`}
                 key={index}
                 className="border border-gray-600 rounded-lg p-6"
               >
@@ -628,7 +611,10 @@ export default function Home() {
         id="contact"
         className="py-20 bg-gradient-to-br from-[#f5f5ff] to-white"
       >
-        <div className="max-w-[1300px] mx-auto px-6 text-center mb-16 flex flex-col items-center">
+        <div
+          data-aos="fade-up"
+          className="max-w-[1300px] mx-auto px-6 text-center mb-16 flex flex-col items-center"
+        >
           <h2 className="max-w-lg text-[40px] font-bold mb-4 leading-[1.3] tracking-[-0.02em]">
             Let's Build Something Great Together
           </h2>
@@ -638,7 +624,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="max-w-[1300px] mx-auto px-6">
+        <div data-aos="fade-up" className="max-w-[1300px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <div className="mb-8">
@@ -779,12 +765,15 @@ export default function Home() {
         </div>
       </section>
 
-           {/* Testimonials Section */}
-           <section className="py-20 bg-[#f3f3f6]">
+      {/* Testimonials Section */}
+      <section className="py-20 bg-[#f3f3f6]">
         <div className="max-w-[1300px] mx-auto px-6">
-          <div className="flex justify-between items-center mb-12">
+          <div
+            data-aos="fade-up"
+            className="flex justify-between items-center mb-12"
+          >
             <div>
-              <h2 className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em]">
+              <h2 className="text-[56px] font-semibold leading-[1.1] tracking-[-0.02em]">
                 What our clients say
               </h2>
               <p className="text-gray-600 mt-2">
@@ -793,24 +782,10 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4">
-              <button
-                onClick={() =>
-                  setActiveTestimonial((prev) =>
-                    prev > 0 ? prev - 1 : testimonials.length - 1
-                  )
-                }
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
-              >
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center">
                 <ArrowLeft size={16} />
               </button>
-              <button
-                onClick={() =>
-                  setActiveTestimonial((prev) =>
-                    prev < testimonials.length - 1 ? prev + 1 : 0
-                  )
-                }
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center"
-              >
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center">
                 <ArrowRight size={16} />
               </button>
             </div>
@@ -820,7 +795,9 @@ export default function Home() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-transparent p-6 rounded-xl  border border-[#9E9E9E]`}
+                data-aos="fade-up"
+                data-aos-delay={`${index * 100}`}
+                className={`bg-transparent p-6 rounded-xl  border h-fit border-[#9E9E9E]`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -842,7 +819,24 @@ export default function Home() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-40 bg-primary text-white">
+      <div className="relative h-full w-full p-32 bg-primary text-white flex justify-center items-center">
+        <Image
+          src="/rings.png"
+          alt="Process"
+          width={400}
+          height={400}
+          style={{
+            rotate: "270deg",
+          }}
+          className="absolute w-full max-w-md top-0 left-0"
+        />
+        <Image
+          src="/rings.png"
+          alt="Process"
+          width={400}
+          height={400}
+          className="absolute w-full max-w-md bottom-0 right-0 rotate-90"
+        />
         <div className="max-w-[1300px] mx-auto px-6 text-center">
           <h2 className="text-[48px] font-bold mb-4 leading-[1.1] tracking-[-0.02em]">
             Every Project is a Unique Opportunity
@@ -859,11 +853,11 @@ export default function Home() {
             Get in Touch
           </Link>
         </div>
-      </section>
+      </div>
       {/* Footer */}
-      <footer className="bg-[#111111] text-white py-16">
-        <div className="max-w-[1300px] mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
+      <footer className="bg-[#111111] text-white relative">
+        <div className="  mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-56">
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
@@ -1082,6 +1076,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
