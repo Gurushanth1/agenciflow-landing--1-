@@ -30,12 +30,16 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import { Header } from "@/components/header"
+import CountUpItem from "../components/ui/count-up";
 // ..
 
 export default function Home() {
+
   useEffect(() => {
     AOS.init();
   }, []);
+
+
 
   const testimonials = [
     {
@@ -61,6 +65,21 @@ export default function Home() {
     },
   ];
 
+  const techItems = [
+    { name: "CSS3", icon: "/tech/css.svg" },
+    { name: "JavaScript", icon: "/tech/js.svg" },
+    { name: "Angular", icon: "/tech/angular.svg" },
+    { name: "React", icon: "/tech/react.svg" },
+    { name: "CSS3", icon: "/tech/css.svg" },
+    { name: "JavaScript", icon: "/tech/js.svg" },
+    { name: "Swift", icon: "/tech/swift.svg" },
+    { name: "Angular", icon: "/tech/angular.svg" },
+  ];
+
+  // Duplicate the array to create a seamless loop
+  const duplicatedItems = [...techItems, ...techItems];
+
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -69,10 +88,10 @@ export default function Home() {
         <div
           data-aos="fade-down"
           className="absolute inset-0 z-0"
-          // style={{
-          //   transform: `translateY(${scrollY * 0.15}px)`,
-          //   transition: "transform 0.1s linear",
-          // }}
+        // style={{
+        //   transform: `translateY(${scrollY * 0.15}px)`,
+        //   transition: "transform 0.1s linear",
+        // }}
         >
           <Image
             src="/wave.png"
@@ -89,11 +108,11 @@ export default function Home() {
             data-aos="fade-up"
             data-aos-delay="100"
             className="max-w-[700px]"
-            // style={{
-            //   transform: `translateY(${scrollY * -0.1}px)`,
-            //   opacity: 1 - scrollY * 0.001,
-            //   transition: "transform 0.1s linear, opacity 0.1s linear",
-            // }}
+          // style={{
+          //   transform: `translateY(${scrollY * -0.1}px)`,
+          //   opacity: 1 - scrollY * 0.001,
+          //   transition: "transform 0.1s linear, opacity 0.1s linear",
+          // }}
           >
             <h1 className="text-[80px] font-bold leading-[1.1] tracking-[-0.02em]">
               Your vision, our innovation limitless potential
@@ -132,6 +151,8 @@ export default function Home() {
           </div>
 
           <div data-aos="fade-up" className="flex flex-col md:flex-row gap-6">
+
+            {/* <FeatureSection */}
             <div className="bg-white p-8 rounded-2xl shadow-sm flex-[3]">
               <h3 className="text-2xl font-bold mb-2">
                 AI-Powered Page Builder
@@ -149,41 +170,21 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col justify-center   py-4 flex-[2]">
-              <div className="border-b py-8">
-                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
-                  5,000+
-                </h3>
-                <p className="text-gray-600 mt-1 text-xl">
-                  Websites Built Using Flozy Pages
-                </p>
-              </div>
-
-              <div className="border-b py-8">
-                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
-                  80%
-                </h3>
-                <p className="text-gray-600 mt-1">
-                  Faster Website Creation Compared To Traditional Methods
-                </p>
-              </div>
-
-              <div className="border-b py-8">
-                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
-                  99.9%
-                </h3>
-                <p className="text-gray-600 mt-1">
-                  Uptime Ensuring Reliable Hosting And Performance
-                </p>
-              </div>
-
-              <div className="border-b py-8">
-                <h3 className="text-[32px] font-semibold text-gray-900 leading-tight">
-                  10,000+
-                </h3>
-                <p className="text-gray-600 mt-1">
-                  Templates & Design Combinations For Customization
-                </p>
-              </div>
+              <CountUpItem number={5000} text="Websites Built Using Flozy Pages" />
+              <CountUpItem
+                number={80}
+                text="Faster Website Creation Compared To Traditional Methods"
+                hasPercentage
+              />
+              <CountUpItem
+                number={99.9}
+                text="Uptime Ensuring Reliable Hosting And Performance"
+                hasPercentage
+              />
+              <CountUpItem
+                number={10000}
+                text="Templates & Design Combinations For Customization"
+              />
             </div>
           </div>
         </div>
@@ -251,13 +252,13 @@ export default function Home() {
           <h2 className="text-[40px] font-bold mb-4 leading-[1.1] tracking-[-0.02em] max-w-2xl mx-auto">
             Whatever Your Tech Stack, We're Ready
           </h2>
-          <p className="text-gray-600 mt-4 text-lg max-w-3xl mx-auto mb-16">
+          <p className="text-gray-600 mt-4 text-lg max-w-3xl mx-auto mb-3">
             We deliver cutting-edge technology solutions to help businesses
             innovate, scale, and thrive in the digital era. Our services ensure
             efficiency, security, and high performance across all platforms.
           </p>
 
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-4 mb-8">
+          {/* <div className="grid grid-cols-4 md:grid-cols-8 gap-4 mb-8">
             {[
               { name: "CSS3", icon: "/tech/css.svg" },
               { name: "JavaScript", icon: "/tech/js.svg" },
@@ -283,9 +284,69 @@ export default function Home() {
                 <span className="text-xs mt-2">{tech.name}</span>
               </div>
             ))}
+          </div> */}
+
+          <div className="relative w-full pt-[40px]">
+
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/techBg.svg" // Replace with your image path
+                alt="Background"
+                layout="fill"
+                objectFit="contain"
+                className="opacity-70" // Adjust opacity as needed
+              />
+            </div>
+
+            {/* Left fade gradient */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-[#f3f3f6] to-transparent pointer-events-none" />
+            {/* Right fade gradient */}
+            <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[#f3f3f6] to-transparent pointer-events-none" />
+
+            <div className="relative w-full group overflow-hidden pb-[60px] pt-[10px]">
+              <div className="animate-[infinite-scroll-left_20s_linear_infinite] whitespace-nowrap inline-block group-hover:[animation-play-state:paused]">
+                <div className="inline-flex gap-4">
+                  {[...techItems, ...techItems].map((tech, index) => (
+                    <div key={index} className=" flex flex-col items-center w-[calc(25%-16px)] md:w-[calc(12.5%-16px)] flex-shrink-0">
+                      <div className="w-20 h-20 bg-white techItem rounded-lg flex flex-col items-center justify-center shadow-sm">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={32}
+                          height={32}
+                        />
+                        <span className="text-xs mt-2">{tech.name}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="relative w-full group overflow-hidden  pb-[20px] pt-[10px]">
+              <div className="animate-[infinite-scroll-right_20s_linear_infinite] whitespace-nowrap inline-block group-hover:[animation-play-state:paused]">
+                <div className="inline-flex gap-4">
+                  {[...techItems, ...techItems].map((tech, index) => (
+                    <div key={index} className=" flex flex-col items-center w-[calc(25%-16px)] md:w-[calc(12.5%-16px)] flex-shrink-0">
+                      <div className="w-20 h-20 bg-white techItem flex-col rounded-lg flex items-center justify-center shadow-sm">
+                        <Image
+                          src={tech.icon || "/placeholder.svg"}
+                          alt={tech.name}
+                          width={32}
+                          height={32}
+                        />
+                        <span className="text-xs mt-2">{tech.name}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
+
+          {/* <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
             {[
               { name: "CSS3", icon: "/tech/css.svg" },
               { name: "React", icon: "/tech/react.svg" },
@@ -311,7 +372,7 @@ export default function Home() {
                 <span className="text-xs mt-2">{tech.name}</span>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -525,9 +586,8 @@ export default function Home() {
                 <div
                   data-aos="fade-up"
                   key={index}
-                  className={`flex gap-4 border-gray-700 pb-6 ${
-                    index === 0 ? "border-t pt-6" : "border-b"
-                  }`}
+                  className={`flex gap-4 border-gray-700 pb-6 ${index === 0 ? "border-t pt-6" : "border-b"
+                    }`}
                 >
                   <Points />
                   <div>
@@ -609,8 +669,27 @@ export default function Home() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="py-20 bg-gradient-to-br from-[#f5f5ff] to-white"
+        className="pt-20 pb-[100px] bg-gradient-to-br from-[#f5f5ff] to-white overflow-hidden"
       >
+          <div className="contactBg2 absolute inset-0 z-0">
+              <Image
+                src="/contactBg2.svg" // Replace with your image path
+                alt="Background"
+                layout="fill"
+                objectFit="contain"
+                className="opacity-70" // Adjust opacity as needed
+              />
+            </div>
+            <div className="contactBg1 absolute inset-0 z-0">
+              <Image
+                src="/contactBg1.svg" // Replace with your image path
+                alt="Background"
+                layout="fill"
+                objectFit="contain"
+                className="opacity-70" // Adjust opacity as needed
+              />
+            </div>
+
         <div
           data-aos="fade-up"
           className="max-w-[1300px] mx-auto px-6 text-center mb-16 flex flex-col items-center"
@@ -624,9 +703,9 @@ export default function Home() {
           </p>
         </div>
 
-        <div data-aos="fade-up" className="max-w-[1300px] mx-auto px-6">
+        <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
-            <div>
+            <div data-aos="fade-right">
               <div className="mb-8">
                 <h3 className="text-gray-500 text-sm mb-2">E-mail</h3>
                 <p className="text-xl font-medium">hello@agenciflow.com</p>
@@ -675,7 +754,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-100 p-8 rounded-lg shadow-sm">
+            <div data-aos="fade-left" className="bg-gray-100 p-8 rounded-lg shadow-sm">
               <form className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -797,7 +876,7 @@ export default function Home() {
                 key={index}
                 data-aos="fade-up"
                 data-aos-delay={`${index * 100}`}
-                className={`bg-transparent p-6 rounded-xl  border h-fit border-[#9E9E9E]`}
+                className={`bg-transparent p-6 rounded-xl  border h-full border-[#9E9E9E]`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Image
@@ -812,7 +891,7 @@ export default function Home() {
                     <p className="text-sm text-gray-600">{testimonial.title}</p>
                   </div>
                 </div>
-                <p className="text-gray-700">{testimonial.quote}</p>
+                <p className="text-[14px] text-[#6E6C83] leading-[38px]">{testimonial.quote}</p>
               </div>
             ))}
           </div>
@@ -854,28 +933,15 @@ export default function Home() {
           </Link>
         </div>
       </div>
+
       {/* Footer */}
-      <footer className="bg-[#111111] text-white relative">
-        <div className="  mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-56">
+      <footer className="bg-[#202122] text-white relative">
+        <div className="  mx-auto px-6 px-lg-80">
+          <div className="grid md:grid-cols-4 gap-8 py-80">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 3L4 9V21H20V9L12 3Z"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center">
+                  <Image src={'/logosvg.svg'} alt="logo" width={30} height={30} />
                 </div>
                 <span className="font-bold text-lg">AgenciFlow</span>
               </div>
@@ -1055,7 +1121,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="border-t border-gray-800 pt-8 pb-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2025 AgenciFlow. All rights reserved.
             </p>
