@@ -257,3 +257,7 @@ p {
   width: auto !important;
   top: -30% !important;
 }
+
+.dev-count-section img {
+  width: 100%;
+}
