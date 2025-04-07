@@ -105,6 +105,14 @@ const config = {
         swipe:{
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-100%)" },
+        },
+        'infinite-scroll-left': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        'infinite-scroll-right': {
+          from: { transform: 'translateX(-50%)' },
+          to: { transform: 'translateX(0)' },
         }
       },
       animation: {
@@ -112,6 +120,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         swipe: "swipe 5s linear infinite",
         "swipe-reverse": "swipe 5s linear infinite reverse",
+        'infinite-scroll-left': 'infinite-scroll-left 20s linear infinite',
+        'infinite-scroll-right': 'infinite-scroll-right 20s linear infinite',
       },
     },
   },
